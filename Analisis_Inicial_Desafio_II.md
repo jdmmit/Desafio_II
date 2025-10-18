@@ -1,9 +1,12 @@
 # Analisis Inicial - UdeATunes
 ## Sistema de Streaming Musical en C++
 
-**Autor:** Camilo Medina & Juan David Murillo. 
-**Institución:** Universidad de Antioquia.  
+**Autor:** Camilo Medina & Juan David Murillo.
+
+**Institución:** Universidad de Antioquia.
+
 **Fecha:** 17 de Octubre, 2025.  
+
 **Proyecto:** Desafío II - Informática II 2025-2.
 
 ## ¿Que tengo que hacer?
@@ -77,4 +80,51 @@ Se va a usar POO o Programacion Orientada a Objetos, ya que es mas facil de orga
 - Contar cuantas operaciones hace el programa.
 
 **Lista de favoritos (Premium):**
+- Agregar canciones buscando po ID.
+- Quitar canciones que ya no gusten.
+- Seguir la lista de favoritos de otros usuarios.
+- Reproducir todas las favoritas.
 
+
+## Aspectos tecnicos.
+
+**Identificacion de canciones:**
+Cada cancion va a tener 9 dijitos
+- Primeros 5 dijitos: es el codigo del artista.
+- Siguientes 2 dijitos: numero de albun.
+- Ultimos 2 dijitos: numero de la cancion.
+
+**Calidad de audio.**
+- Estandar: archivos terminados en "_128.ogg".
+- Premium: archivos terminados en "_320.ogg#.
+
+**Medicion de eficiencia:**
+El programa va a contar cuantas operaciones hace y cuanta memoria usa, para demostrar que funciona bien.
+
+## Plan de desarrollo.
+
+1. **Primero:** Crear las clases básicas y la lista enlazada
+2. **Segundo:** Implementar el login y menú principal
+3. **Tercero:** Hacer funcionar la reproducción aleatoria
+4. **Cuarto:** Agregar el sistema de publicidad
+5. **Quinto:** Implementar las listas de favoritos
+6. **Sexto:** Añadir la medición de recursos
+7. **Último:** Mejorar la interfaz para que se vea bien
+
+## Datos de prueba
+
+Voy a crear algunos usuarios, artistas y canciones de ejemplo para poder probar todo:
+- 2 usuarios normales y 2 premium
+- 3 artistas con sus álbumes
+- 8 canciones en total
+- 6 mensajes publicitarios de diferentes tipos
+
+## Retos que veo
+
+- **Memoria:** Cuidar bien la memoria dinámica para no tener fugas
+- **Interfaz:** Hacer que se vea bonito en la consola
+- **Búsquedas:** Que sea rápido encontrar canciones por ID
+- **Aleatoriedad:** Que realmente sea aleatorio y no repita patrones
+- **Publicidad:** Que los anuncios importantes aparezcan más seguido
+
+Este análisis me da una visión clara de lo que tengo que construir. El objetivo es hacer un sistema funcional que simule una plataforma de música real, pero de forma simple y educativa.
