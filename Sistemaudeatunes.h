@@ -10,14 +10,13 @@
 
 using namespace std;
 
-
 class SistemaUdeATunes
 {
 private:
     Lista<Usuario> usuarios;
     Lista<Artista> artista;
     Lista<MensajePublicitario> mensaje;
-    Usuario* usuarioActual;
+    Usuario *usuarioActual;
     int contadorIteraciones;
 
 public:
@@ -34,9 +33,7 @@ public:
     void agregarCancionFavoritas();
     void removerCancionFavorita();
     void menuPrincipal();
-    void mostrarUsuariosRegistrados();
-
-
+    void mostrarUsuariosRegistrados()
 };
 
 #endif

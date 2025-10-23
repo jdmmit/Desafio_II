@@ -1,8 +1,6 @@
 #include "Sistemaudeatunes.h"
 #include <iostream>
 
-using namespace std;
-
 SistemaUdeATunes::SistemaUdeATunes()
 {
     usuarioActual = nullptr;
@@ -129,4 +127,110 @@ void SistemaUdeATunes::reproduccionAleatoria()
     }
 
     cout << " \n Reproduccion Completada. " endl;
+}
+
+void sistemaUdeATunes::menuListasFavoritos()
+{
+    cout << "\n === LISTA DE FAVORITOS === " << endl;
+
+    if (!usuariosActual)
+    {
+        cout << "Debe iniciar sesion primero. " << endl;
+        return;
+    }
+
+    if (usurioActual->getMembresia() != PREMIUM)
+    {
+        cout << " Esta funcion es solo para usuarios Premium." << endl;
+        return;
+    }
+    cout << "\n Opciones: " << endl;
+    cout << "1. Ver canciones favoritas. " << endl;
+    cout << "2. Agregar cancion a favoritos. " << endl;
+    cout << "3. Remover cancion de favoritos. " << endl;
+    cout << "0. Volver. "
+
+        int opcion;
+    cout << "Seleccione opcion: ";
+    cin >> opcion;
+    cin.ignore();
+
+    switch (opcion)
+    {
+    case 1:
+        mostrarFavoritos();
+        break;
+    case 2:
+        agregarCancionFavorita();
+        break;
+    case 3:
+        removerCancionFavorita();
+        break;
+    case 0:
+        cout << "Volviendo al menu principal... " << endl;
+        break;
+    default:
+        cout << "Opcion invalida. Intente de nuevo. " << endl;
+    }
+}
+
+long SistemaUdeATune::calcularMemoria()
+{
+    cout << "\n === MEDICION DE MEMORIA === " << endl;
+
+    long memoria = 0;
+    memoria += usuario.obtenerTamanio() * sizeof(Usuario);
+    memoria += artista.obtenerTamanio() * sizeof(Artista);
+    memoria += mensajes.obtenerTamanio() * sizeof(MensajePublicitario);
+
+    cout << "Usuarios en memoria: " << usuarios.obtenerTamanio() << endl;
+    cout << "Artistas en memoria: " << artistas.obtenerTamanio() << endl;
+    cout << "Mensajes en memoria: " << mensajes.obtenerTamanio() << endl;
+    cout << "Iteraciones realizadas: " << contadorIteraciones << endl;
+    cout << "Memoria total calculada: " << memoria << " bytes" << endl;
+
+    return memoria;
+}
+
+void SistemaUdeATunes::registrarUsuario()
+{
+    cout << "\n === REGISTRO NUEVO USUARIO ===" << endl;
+
+    string nickname, nombre, siudad;
+    int edad, tipoMem;
+
+    cout << " Ingrese nickname: " << endl;
+    getline(cin, nickname)
+
+        // Verificar que no exista el nickname
+
+        for (int i = 0; i < usuario.obtenerTamanio(); i++)
+    {
+        usuario *user = usuarios.obtener(i);
+        if (user && user->getNickname() == nickname)
+        {
+            cout << " Error: El nickname ya existe. " << endl;
+            return;
+        }
+    }
+
+    cout << "Ingrese nopmbre completo: ";
+    << endl;
+    getkine(cin, nombre);
+
+    cout << "Ingrese la edad: ";
+    cin >> edad;
+    cin.ignore();
+
+    cout << "Ingrese ciudad: ";
+    getline(cin, ciudad);
+
+    cout << "Tipo de membresia:" << endl;
+    cout << "1. Estandar" << endl;
+    cout << "2. Premium" << endl;
+    cout << "Seleccione: ";
+    cin >> tipoMem;
+    cin.ignore();
+
+    TipoMembresia membresia = (tipoMem == 2) ? PREMIUM : ESTANDAR;
 }
