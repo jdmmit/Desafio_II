@@ -233,4 +233,269 @@ void SistemaUdeATunes::registrarUsuario()
     cin.ignore();
 
     TipoMembresia membresia = (tipoMem == 2) ? PREMIUM : ESTANDAR;
+
+    // Generar nuevo ID
+
+    int nuevoID = usuarios.obtenerTemario() + 1;
+
+    // Crear y  agregar usuario
+
+    Usuario nuevoUsuario(nuevoId, nickname, nombre, edad, membresia, ciudad);
+    usuario.agregar(nuevoUsuario);
+
+    cout << "\nUsuario registrado exitosamente!" << endl;
+    cout << "ID: " << nuevoId << endl;
+    cout << "Nickname: " << nickname << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Membresia: " << (membresia == PREMIUM ? "Premium" : "Estandar") << endl;
+
+    // Hacer login automatico del nuevo usuario
+
+    usuario *usuarioRecienCreado = usuario.obtener(usuarios.obtenerTemario() - 1);
+    if (usuarioRecienCreadi)
+    {
+        usuarioActual = usuarioRecienCreado;
+        cout << "\nIniciando sesion automaticamente..." << endl;
+        usuarioRecienCreado->login();
+    }
+}
+
+void SistemaUdeATunes::mostrarFavoritos()
+{
+    cout << "\n=== MIS CANCIONES FAVORITAS ===" << endl;
+
+    if (usuarioActual->getFavorito().estaVacia())
+    {
+        cout << "No tienes canciones favoritas aun." << endl;
+        return;
+    }
+
+    cout << "Tus canciones favoritas:" << endl;
+    for (int i = 0; i < usuarioActual->getFavorito().obtenerTamanio(); i++)
+    {
+        int *idCancion = usuarioActual->getFavorito().obtener(i);
+        if (idCancion)
+        {
+            cout << "- Cancion ID: " << *idCancion << " (" << "Titulo Example" << ")" << endl;
+        }
+    }
+}
+
+void SistemaUdeATunes::agregarCancionFavorita()
+{
+    cout << "\n=== AGREGAR A FAVORITOS ===" << endl;
+
+    cout << "Canciones disponibles:" << endl;
+    cout << "1001 - A tu lado" << endl;
+    cout << "1002 - Corazon Valiente" << endl;
+    cout << "1003 - Suenos Dorados" << endl;
+    cout << "2001 - Ciudad de Neon" << endl;
+    cout << "2002 - Baila Conmigo" << endl;
+    cout << "3001 - Midnight Pulse" << endl;
+    cout << "3002 - Digital Love" << endl;
+    cout << "3003 - Neon Lights" << endl;
+
+    int idCancion;
+    cout << "\nIngrese ID de la cancion: ";
+    cin >> idCancion;
+    cin.ignore();
+
+    // Verificar que no este ya en favoritos
+    if (usuarioActual->getFavorito().contiene(idCancion))
+    {
+        cout << "Esta cancion ya esta en tus favoritos." << endl;
+        return;
+    }
+
+    // Agregar a favoritos
+    usuarioActual->getFavorito().agregar(idCancion);
+    cout << "Cancion agregada a favoritos exitosamente!" << endl;
+    cout << "Total de favoritos: " << usuarioActual->getFavorito().obtenerTamanio() << endl;
+}
+
+void SistemaUdeATunes::removerCancionFavorita()
+{
+    cout << "\n=== REMOVER DE FAVORITOS ===" << endl;
+
+    if (usuarioActual->getFavorito().estaVacia())
+    {
+        cout << "No tienes canciones favoritas para remover." << endl;
+        return;
+    }
+
+    mostrarFavoritos();
+
+    int idCancion;
+    cout << "\nIngrese ID de la cancion a remover: ";
+    cin >> idCancion;
+    cin.ignore();
+
+    if (usuarioActual->getFavorito().remover(idCancion))
+    {
+        cout << "Cancion removida de favoritos exitosamente!" << endl;
+        cout << "Total de favoritos: " << usuarioActual->getFavorito().obtenerTamanio() << endl;
+    }
+    else
+    {
+        cout << "No se encontro esa cancion en tus favoritos." << endl;
+    }
+}
+
+void SistemaUdeATunes::menuPrincipal()
+{
+    int opcion = 0;
+
+    while (opcion != 9)
+    {
+        cout << "\n"
+             << string(50, '=') << endl;
+        cout << "           MENU PRINCIPAL UDEATUNES" << endl;
+        cout << string(50, '=') << endl;
+
+        if (usuarioActual)
+        {
+            cout << "Usuario actual: " << usuarioActual->getNickname()
+                 << " (" << usuarioActual->getNombre() << ")" << endl;
+            cout << "Tipo: " << (usuarioActual->getMembresia() == PREMIUM ? "Premium" : "Estandar") << endl;
+            cout << string(50, '-') << endl;
+        }
+        else
+        {
+            cout << "No hay usuario logueado" << endl;
+            cout << string(50, '-') << endl;
+        }
+
+        cout << "OPCIONES DISPONIBLES:" << endl;
+        cout << "1. Ver usuarios registrados" << endl;
+        cout << "2. Registrar nuevo usuario" << endl;
+        cout << "3. Iniciar sesion" << endl;
+
+        if (usuarioActual)
+        {
+            cout << "4. Reproduccion aleatoria" << endl;
+            if (usuarioActual->getMembresia() == PREMIUM)
+            {
+                cout << "5. Lista de favoritos" << endl;
+            }
+            cout << "6. Medicion de memoria" << endl;
+            cout << "7. Cerrar sesion" << endl;
+        }
+
+        cout << "9. Salir del programa" << endl;
+        cout << string(50, '=') << endl;
+        cout << "Seleccione una opcion: ";
+        cin >> opcion;
+        cin.ignore();
+
+        switch (opcion)
+        {
+        case 1:
+            mostrarUsuariosRegistrados();
+            break;
+        case 2:
+            registrarUsuario();
+            break;
+        case 3:
+            if (!usuarioActual)
+            {
+                iniciarSesion();
+            }
+            else
+            {
+                cout << "Ya hay un usuario logueado. Cierre sesion primero." << endl;
+            }
+            break;
+        case 4:
+            if (usuarioActual)
+            {
+                reproduccionAleatoria();
+            }
+            else
+            {
+                cout << "Debe iniciar sesion primero." << endl;
+            }
+            break;
+        case 5:
+            if (usuarioActual && usuarioActual->getMembresia() == PREMIUM)
+            {
+                menuListaFavoritos();
+            }
+            else if (usuarioActual)
+            {
+                cout << "Esta funcion es solo para usuarios Premium." << endl;
+            }
+            else
+            {
+                cout << "Debe iniciar sesion primero." << endl;
+            }
+            break;
+        case 6:
+            if (usuarioActual)
+            {
+                calcularMemoria();
+            }
+            else
+            {
+                cout << "Debe iniciar sesion primero." << endl;
+            }
+            break;
+        case 7:
+            if (usuarioActual)
+            {
+                cout << "Cerrando sesion de: " << usuarioActual->getNickname() << endl;
+                usuarioActual = nullptr;
+            }
+            else
+            {
+                cout << "No hay sesion activa." << endl;
+            }
+            break;
+        case 9:
+            cout << "Gracias por usar UdeATunes!" << endl;
+            break;
+        default:
+            cout << "Opcion no valida. Intente de nuevo." << endl;
+        }
+
+        if (opcion != 9)
+        {
+            cout << "\nPresione ENTER para continuar...";
+            cin.get();
+        }
+    }
+}
+
+void SistemaUdeATunes::mostrarUsuariosRegistrados()
+{
+    cout << "\n=== USUARIOS REGISTRADOS ===" << endl;
+
+    if (usuarios.estaVacia())
+    {
+        cout << "No hay usuarios registrados." << endl;
+        return;
+    }
+
+    cout << "Total de usuarios: " << usuarios.obtenerTamanio() << endl;
+    cout << string(45, '-') << endl;
+
+    for (int i = 0; i < usuarios.obtenerTamanio(); i++)
+    {
+        Usuario *user = usuarios.obtener(i);
+        if (user)
+        {
+            cout << "ID: " << user->getId() << endl;
+            cout << "Nickname: " << user->getNickname() << endl;
+            cout << "Nombre: " << user->getNombre() << endl;
+            cout << "Edad: " << user->getEdad() << " anos" << endl;
+            cout << "Ciudad: " << user->getCiudad() << endl;
+            cout << "Membresia: " << (user->getMembresia() == PREMIUM ? "Premium" : "Estandar") << endl;
+
+            if (user->getMembresia() == PREMIUM)
+            {
+                cout << "Canciones favoritas: " << user->getFavorito().obtenerTamanio() << endl;
+            }
+
+            cout << string(45, '-') << endl;
+        }
+    }
 }
