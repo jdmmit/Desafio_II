@@ -1,0 +1,7 @@
+ID: 1230101
+Nombre: A tu lado
+Artista: Claudia Lorelle
+Album: Lugar Secreto
+Duracion: 225
+Ubicacion: /users/storage/musica/claudia_lorelle/audio/a_tu_lado
+Creditos: Juan Perez,Maria Lopez,Pedro Garcia

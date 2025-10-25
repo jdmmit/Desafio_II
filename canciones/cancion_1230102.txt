@@ -1,0 +1,7 @@
+ID: 1230102
+Nombre: Corazon Valiente
+Artista: Claudia Lorelle
+Album: Lugar Secreto
+Duracion: 210
+Ubicacion: /users/storage/musica/claudia_lorelle/audio/corazon_valiente
+Creditos: Ana Torres,Luis Martinez,Carmen Silva

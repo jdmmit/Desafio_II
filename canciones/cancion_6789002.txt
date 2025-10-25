@@ -1,0 +1,7 @@
+ID: 6789002
+Nombre: Baila Conmigo
+Artista: Diego Urban
+Album: Ritmo Urbano
+Duracion: 230
+Ubicacion: /users/storage/musica/diego_urban/audio/baila_conmigo
+Creditos: Diego Urban,Laura Sanchez

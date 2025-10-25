@@ -1,0 +1,7 @@
+ID: 6789001
+Nombre: Ciudad de Neon
+Artista: Diego Urban
+Album: Ritmo Urbano
+Duracion: 240
+Ubicacion: /users/storage/musica/diego_urban/audio/ciudad_de_neon
+Creditos: Diego Urban,Carlos Beats,Monica Vega

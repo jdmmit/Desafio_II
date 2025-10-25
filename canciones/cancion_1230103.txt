@@ -1,0 +1,7 @@
+ID: 1230103
+Nombre: Suenos Dorados
+Artista: Claudia Lorelle
+Album: Lugar Secreto
+Duracion: 195
+Ubicacion: /users/storage/musica/claudia_lorelle/audio/suenos_dorados
+Creditos: Roberto Diaz,Sofia Ramirez
