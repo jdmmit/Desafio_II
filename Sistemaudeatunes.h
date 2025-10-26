@@ -1,11 +1,12 @@
 #ifndef SISTEMAUDEATUNES_H
 #define SISTEMAUDEATUNES_H
 
-#include <iostrem>
+#include <iostream>
 #include <string>
 #include "Lista.h"
-#include "Usuario.h"
+#include "usuario.h"
 #include "Artista.h"
+#include "Cancion.h"
 #include "MensajePublicitario.h"
 
 using namespace std;
@@ -14,8 +15,9 @@ class SistemaUdeATunes
 {
 private:
     Lista<Usuario> usuarios;
-    Lista<Artista> artista;
-    Lista<MensajePublicitario> mensaje;
+    Lista<Artista> artistas;
+    Lista<Cancion> canciones;
+    Lista<MensajePublicitario> mensajes;
     Usuario *usuarioActual;
     int contadorIteraciones;
 
@@ -26,14 +28,14 @@ public:
     void cargarDatos();
     void iniciarSesion();
     void reproduccionAleatoria();
-    void menuListasFavoritos();
-    long cularMemoria();
+    void menuListaFavoritos();
+    long calcularMemoria();
     void registrarUsuario();
     void mostrarFavoritos();
-    void agregarCancionFavoritas();
+    void agregarCancionFavorita();
     void removerCancionFavorita();
     void menuPrincipal();
-    void mostrarUsuariosRegistrados()
+    void mostrarUsuariosRegistrados();
 };
 
 #endif

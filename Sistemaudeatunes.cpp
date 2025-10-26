@@ -1,4 +1,4 @@
-#include "SistemaUdeATunes.h"
+#include "Sistemaudeatunes.h"
 #include <iostream>
 #include <fstream>
 #include <string>
@@ -36,24 +36,43 @@ void SistemaUdeATunes::cargarDatos()
     // cargar las canciones de los archivos txt
     cout << "\nCargando canciones..." << endl;
 
-    string rutasArchivos[8] = {
-        "canciones/cancion_1230101.txt",
-        "canciones/cancion_1230102.txt",
-        "canciones/cancion_1230103.txt",
-        "canciones/cancion_6789001.txt",
-        "canciones/cancion_6789002.txt",
-        "canciones/cancion_1111101.txt",
-        "canciones/cancion_1111102.txt",
-        "canciones/cancion_1111103.txt"};
+    string nombreArchivos[8] = {
+        "cancion_1230101.txt",
+        "cancion_1230102.txt",
+        "cancion_1230103.txt",
+        "cancion_6789001.txt",
+        "cancion_6789002.txt",
+        "cancion_1111101.txt",
+        "cancion_1111102.txt",
+        "cancion_1111103.txt"};
+
+    // intentar diferentes rutas base
+    string rutasBases[3] = {
+        "canciones/",
+        "../canciones/",
+        "../../canciones/"};
 
     // leer cada archivo
     for (int i = 0; i < 8; i++)
     {
         Cancion cancion;
-        if (cancion.cargarDesdeArchivo(rutasArchivos[i]))
+        bool cargado = false;
+
+        // intentar con cada ruta base
+        for (int j = 0; j < 3 && !cargado; j++)
         {
-            canciones.agregar(cancion);
-            cout << "- " << cancion.getNombre() << " (ID: " << cancion.getId() << ")" << endl;
+            string rutaCompleta = rutasBases[j] + nombreArchivos[i];
+            if (cancion.cargarDesdeArchivo(rutaCompleta))
+            {
+                canciones.agregar(cancion);
+                cout << "- " << cancion.getNombre() << " (ID: " << cancion.getId() << ")" << endl;
+                cargado = true;
+            }
+        }
+
+        if (!cargado)
+        {
+            cout << "Error abriendo: " << nombreArchivos[i] << endl;
         }
     }
 

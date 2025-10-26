@@ -23,7 +23,7 @@ public:
     Cancion();
     Cancion(int id, const string &nom, const string &art, const string &alb, int dur, const string &ubicacion);
 
-    // Getters
+    // Funciones para obtener los datos o getters
     int getId() const { return id_cancion; }
     string getNombre() const { return nombre; }
     string getArtista() const { return artista; }

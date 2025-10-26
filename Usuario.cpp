@@ -8,8 +8,8 @@ Usuario::Usuario(int id, const string& nick, const string& nom, int edad, TipoMe
 bool Usuario::login() {
     cout << "Login para usuario: " << nickname << endl;
     cout << "ID: " << id_usuario << endl;
-    cout << "Nombre: " << nombre <<endl;
-    cout << "Edad: " << edad << anos << endl;
+    cout << "Nombre: " << nombre << endl;
+    cout << "Edad: " << edad << " anos" << endl;
     cout << "Membresia: " << (membresia == PREMIUM ? "Premium" : "Estandar") << endl;
     cout << "Ciudad: " << ciudad << endl;
     return true;

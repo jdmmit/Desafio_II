@@ -3,7 +3,7 @@
 
 #include <iostream>
 #include <string>
-#include "Lista.h>"
+#include "Lista.h"
 #include "Enumeraciones.h"
 
 using namespace std;
@@ -24,7 +24,7 @@ public:
     Usuario(int id, const string& nick, const string& nom, int edad, TipoMembresia mem, const string& ciudad);
 
     // Funciones para obtener los datos del usuario o getters
-    int getID() const { return id_usuario; }
+    int getId() const { return id_usuario; }
     string getNickname() const { return nickname; }
     string getNombre() const { return nombre; }
     int getEdad() const { return edad; }

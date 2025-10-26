@@ -14,7 +14,6 @@ bool Cancion::cargarDesdeArchivo(string rutaArchivo)
 
     if (!archivo.is_open())
     {
-        cout << "Error abriendo: " << rutaArchivo << endl;
         return false;
     }
 
@@ -24,7 +23,7 @@ bool Cancion::cargarDesdeArchivo(string rutaArchivo)
     // leer todo el archivo
     while (getline(archivo, linea))
     {
-        int pos = linea.find(':');
+        size_t pos = linea.find(':');
         if (pos != string::npos)
         {
             string campo = linea.substr(0, pos);
@@ -59,7 +58,7 @@ bool Cancion::cargarDesdeArchivo(string rutaArchivo)
             {
                 // separar los creditos por coma
                 string temp = "";
-                for (int j = 0; j < valor.length(); j++)
+                for (size_t j = 0; j < valor.length(); j++)
                 {
                     if (valor[j] == ',')
                     {
