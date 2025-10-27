@@ -311,15 +311,7 @@ void SistemaUdeATunes::registrarUsuario()
     cout << "Nickname: " << nickname << endl;
     cout << "Nombre: " << nombre << endl;
     cout << "Membresia: " << (membresia == PREMIUM ? "Premium" : "Estandar") << endl;
-
-    // Hacer login automatico con el nuevo usuario
-    Usuario *usuarioRecienCreado = usuarios.obtener(usuarios.obtenerTamanio() - 1);
-    if (usuarioRecienCreado)
-    {
-        usuarioActual = usuarioRecienCreado;
-        cout << "\nIniciando sesion automaticamente..." << endl;
-        usuarioRecienCreado->login();
-    }
+    cout << "\nAhora puede iniciar sesion con la opcion 3." << endl;
 }
 
 void SistemaUdeATunes::mostrarFavoritos()
